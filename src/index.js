@@ -129,7 +129,11 @@ class PickerColumn extends Component {
     return options.map((option, index) => {
       const style = {
         height: itemHeight + 'px',
-        lineHeight: itemHeight + 'px'
+        lineHeight: itemHeight + 'px',
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: '24px',
+        display: 'block'
       };
       const className = `picker-item${option === value ? ' picker-item-selected' : ''}`;
       return (
@@ -209,7 +213,11 @@ export default class Picker extends Component {
     return (
       <div className="picker-inner">
         {columnNodes}
-        <div className="picker-highlight" style={highlightStyle}></div>
+        <ul class="picker-highlight" style={highlightStyle}>
+          <li>
+            <a class="active"></a>
+          </li>
+        </ul>
       </div>
     );
   }
