@@ -186,7 +186,7 @@ export default class Picker extends Component {
 
   static defaultProps = {
     onClick: () => {},
-    itemHeight: 36,
+    itemHeight: 40,
     height: 216
   };
 
@@ -215,7 +215,7 @@ export default class Picker extends Component {
         {columnNodes}
         <ul class="picker-highlight" style={highlightStyle}>
           <li>
-            <a class="active"></a>
+            <a class="active" style={{height: '60px', padding: '8px 0 16px'}}></a>
           </li>
         </ul>
       </div>
