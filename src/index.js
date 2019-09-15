@@ -4,7 +4,7 @@ import './style.less';
 
 const pickerItemStyle = {
   height: '3em',
-  lineHeight: '3em',
+  lineHeight: '1.5em',
   color: '#fff',
   fontWeight: 'bold',
   fontSize: '20px',
@@ -12,6 +12,7 @@ const pickerItemStyle = {
   overflow: 'hidden',
   textAlign: 'center',
   margin: 'auto',
+  width: '50%',
   textOverflow: 'ellipsis',
   whiteSpace: 'pre-line'
 };
