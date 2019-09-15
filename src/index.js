@@ -2,6 +2,21 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './style.less';
 
+const pickerItemStyle = {
+  height: '4em',
+  lineHeight: '2em',
+  color: '#fff',
+  fontWeight: 'bold',
+  fontSize: '22px',
+  display: 'block',
+  overflow: 'hidden',
+  width: '50%',
+  textAlign: 'center',
+  margin: 'auto',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'pre-line'
+};
+
 class PickerColumn extends Component {
   static propTypes = {
     options: PropTypes.array.isRequired,
@@ -127,20 +142,12 @@ class PickerColumn extends Component {
   renderItems() {
     const {options, itemHeight, value} = this.props;
     return options.map((option, index) => {
-      const style = {
-        height: itemHeight + 'px',
-        lineHeight: itemHeight + 'px',
-        color: '#fff',
-        fontWeight: 'bold',
-        fontSize: '24px',
-        display: 'block'
-      };
       const className = `picker-item${option === value ? ' picker-item-selected' : ''}`;
       return (
         <div
           key={index}
           className={className}
-          style={style}
+          style={pickerItemStyle}
           onClick={() => this.handleItemClick(option)}>{option}</div>
       );
     });
@@ -215,7 +222,7 @@ export default class Picker extends Component {
         {columnNodes}
         <ul class="picker-highlight" style={highlightStyle}>
           <li>
-            <a class="active" style={{height: '60px', padding: '8px 0 16px'}}></a>
+            <a class="active" style={{height: itemHeight, padding: '8px 0 16px'}}></a>
           </li>
         </ul>
       </div>
