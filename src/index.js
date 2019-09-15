@@ -2,23 +2,10 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './style.less';
 
-const pickerItemStyle = {
-  height: '3em',
-  lineHeight: '1.5em',
-  color: '#fff',
-  fontWeight: 'bold',
-  fontSize: '20px',
-  display: 'block',
-  overflow: 'hidden',
-  textAlign: 'center',
-  margin: 'auto',
-  width: '50%',
-  textOverflow: 'ellipsis',
-  whiteSpace: 'pre-line'
-};
-
 class PickerColumn extends Component {
   static propTypes = {
+    bubbleStyle: PropTypes.object,
+    pickerItemStyle: PropTypes.object,
     options: PropTypes.array.isRequired,
     name: PropTypes.string.isRequired,
     value: PropTypes.any.isRequired,
@@ -140,7 +127,7 @@ class PickerColumn extends Component {
   };
 
   renderItems() {
-    const {options, itemHeight, value} = this.props;
+    const {options, itemHeight, value, pickerItemStyle} = this.props;
     return options.map((option, index) => {
       const className = `picker-item${option === value ? ' picker-item-selected' : ''}`;
       return (
@@ -183,6 +170,9 @@ class PickerColumn extends Component {
 
 export default class Picker extends Component {
   static propTyps = {
+    activeStyle: PropTypes.object,
+    bubbleStyle: PropTypes.object,
+    pickerItemStyle: PropTypes.object,
     optionGroups: PropTypes.object.isRequired,
     valueGroups: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -194,11 +184,27 @@ export default class Picker extends Component {
   static defaultProps = {
     onClick: () => {},
     itemHeight: 40,
-    height: 216
+    height: 216,
+    bubbleStyle: null,
+    activeStyle: null,
+    pickerItemStyle: {
+      height: '3em',
+      lineHeight: '1.5em',
+      color: '#fff',
+      fontWeight: 'bold',
+      fontSize: '20px',
+      display: 'block',
+      overflow: 'hidden',
+      textAlign: 'center',
+      margin: 'auto',
+      width: '50%',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'pre-line'
+    }
   };
 
   renderInner() {
-    const {optionGroups, valueGroups, itemHeight, height, onChange, onClick} = this.props;
+    const {optionGroups, valueGroups, itemHeight, height, onChange, onClick, pickerItemStyle, bubbleStyle, activeStyle} = this.props;
     const highlightStyle = {
       height: itemHeight,
       marginTop: -(itemHeight / 2)
@@ -208,6 +214,7 @@ export default class Picker extends Component {
       columnNodes.push(
         <PickerColumn
           key={name}
+          pickerItemStyle={pickerItemStyle}
           name={name}
           options={optionGroups[name]}
           value={valueGroups[name]}
@@ -220,9 +227,9 @@ export default class Picker extends Component {
     return (
       <div className="picker-inner">
         {columnNodes}
-        <ul class="picker-highlight" style={highlightStyle}>
+        <ul class="picker-highlight" style={bubbleStyle || highlightStyle}>
           <li>
-            <a class="active" style={{height: itemHeight, padding: '8px 0 16px'}}></a>
+            <a class="active" style={activeStyle || {height: itemHeight, padding: '8px 0 16px'}}></a>
           </li>
         </ul>
       </div>
