@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import './style.less';
 
 const pickerItemStyle = {
-  height: '4em',
-  lineHeight: '2em',
+  height: '3em',
+  lineHeight: '3em',
   color: '#fff',
   fontWeight: 'bold',
-  fontSize: '22px',
+  fontSize: '20px',
   display: 'block',
   overflow: 'hidden',
-  width: '50%',
   textAlign: 'center',
   margin: 'auto',
   textOverflow: 'ellipsis',
